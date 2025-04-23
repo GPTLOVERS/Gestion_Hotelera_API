@@ -28,6 +28,11 @@ const habitacionesSchema = new Schema({
         ref: 'User',
         default: null
     },
+    serviciosAdicionales:[{
+        type: Schema.ObjectId,
+        ref: 'ServiciosAdicionales',
+        default: []
+    }],
 })
 
 habitacionesSchema.methods.toJSON = function(){
