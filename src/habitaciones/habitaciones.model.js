@@ -32,7 +32,7 @@ const habitacionesSchema = new Schema({
 
 habitacionesSchema.methods.toJSON = function(){
     const {_id, ...habitaciones} = this.toObject()
-    habitaciones.hid = _id
+    habitaciones.id = _id
     return habitaciones
 }
 
