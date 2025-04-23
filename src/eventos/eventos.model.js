@@ -29,6 +29,11 @@ const eventosSchema = new Schema({
         ref: "Servicios Relacionados",
         default: []
     },
+    habitaciones:[{
+        type: Schema.ObjectId,
+        ref: 'Habitaciones',
+        default: []
+    }],
 }, {
     versionKey: false,
     timeStamps: true
