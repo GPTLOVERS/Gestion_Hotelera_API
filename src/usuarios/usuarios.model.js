@@ -11,6 +11,10 @@ const usuariosSchema = Schema({
         required: [true, "Surname is requiered"],
         maxLength: [25, "Surname cannot exceed 25 characteres"]
     },
+    userName:{
+        type: String,
+        required: true
+    },
     profilePicture: {
         type: String
     },
