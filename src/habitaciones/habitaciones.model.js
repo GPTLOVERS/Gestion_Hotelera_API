@@ -8,7 +8,8 @@ const habitacionesSchema = new Schema({
     },
     categoria:{
         type: String,
-        required: true
+        required: true,
+        enum: ['SENCILLA', 'DOBLE', 'SUITE', 'FAMILIAR']
     },
     precio:{
         type: String,
@@ -25,7 +26,7 @@ const habitacionesSchema = new Schema({
     }],
     usuario:{
         type: Schema.ObjectId,
-        ref: 'User',
+        ref: 'Usuario',
         default: null
     },
     serviciosAdicionales:[{
@@ -40,3 +41,5 @@ habitacionesSchema.methods.toJSON = function(){
     habitaciones.id = _id
     return habitaciones
 }
+
+export default model('Habitaciones', habitacionesSchema)
