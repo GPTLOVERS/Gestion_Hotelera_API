@@ -24,9 +24,9 @@ const eventosSchema = new Schema({
         required: [true, "End time is required"],
         maxLength: [5, "End time cannot exceed 5 characteres"],
     },
-    serviciosRelacionados:{
+    serviciosAdicionales:{
         type: Schema.ObjectId,
-        ref: "Servicios Relacionados",
+        ref: "ServiciosAdicionales",
         default: []
     },
     habitaciones:[{
