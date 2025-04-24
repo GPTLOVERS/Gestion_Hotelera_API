@@ -40,5 +40,3 @@ habitacionesSchema.methods.toJSON = function(){
     habitaciones.id = _id
     return habitaciones
 }
-
-export default model('Habitaciones', habitacionesSchema)
