@@ -33,6 +33,7 @@ export const initServer = () => {
     try{
         middlewares(app);
         connectionMongo();
+        routes(app);
         app.listen(process.env.PORT);
         const elapsedTime = Date.now() - timeInit;
         console.log(`Server running on port ${process.env.PORT} ${elapsedTime}ms`);
