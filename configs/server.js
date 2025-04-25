@@ -5,6 +5,8 @@ import cors from "cors";
 import morgan from "morgan";
 import express from "express";
 import { connectionDB } from "./mongo.js";
+import authRoutes from "../src/Auth/auth.routes.js"
+import habitacionesRoutes from "../src/habitaciones/habitaciones.routes.js";
 
 const middlewares = (app)  =>{
     app.use(express.urlencoded({extended:false}));
@@ -12,6 +14,11 @@ const middlewares = (app)  =>{
     app.use(helmet());
     app.use(cors());
     app.use(morgan("dev"));
+}
+
+const routes = (app) => {
+    app.use('/gestorDeHoteles/v1/auth', authRoutes)
+    app.use('/gestorDeHoteles/v1/habitaciones', habitacionesRoutes)
 }
 
 const connectionMongo = async() =>{
@@ -28,6 +35,7 @@ export const initServer = () => {
     try{
         middlewares(app);
         connectionMongo();
+        routes(app);
         app.listen(process.env.PORT);
         const elapsedTime = Date.now() - timeInit;
         console.log(`Server running on port ${process.env.PORT} ${elapsedTime}ms`);

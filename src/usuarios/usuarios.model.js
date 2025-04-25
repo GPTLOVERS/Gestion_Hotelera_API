@@ -1,27 +1,28 @@
-import { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const usuariosSchema = Schema({
     nombre: {
         type: String,
-        required: [true, "Name is requiered"],
-        maxLength: [25, "Name cannot exceed 25 characteres"]
+        required: [true, "Name is required"],
+        maxLength: [25, "Name cannot exceed 25 characters"]
     },
-    appellido:{
+    apellido: {
         type: String,
-        required: [true, "Surname is requiered"],
-        maxLength: [25, "Surname cannot exceed 25 characteres"]
+        required: [true, "Surname is required"],
+        maxLength: [25, "Surname cannot exceed 25 characters"]
     },
-    profilePicture: {
-        type: String
+    userName: {
+        type: String,
+        required: true
     },
     correo: {
         type: String,
-        required: [true, "Email is requiered"],
-        unique: true,
+        required: [true, "Email is required"],
+        unique: true
     },
     contraseña: {
         type: String,
-        required: [true, "Password is requiered"]
+        required: [true, "Password is required"]
     },
     telefono: {
         type: String,
@@ -29,12 +30,12 @@ const usuariosSchema = Schema({
         maxLength: 8,
         required: true
     },
-    habitaciones:[{
+    habitaciones: [{
         type: Schema.ObjectId,
         ref: 'Habitaciones',
         default: []
     }],
-    eventos:[{
+    eventos: [{
         type: Schema.ObjectId,
         ref: 'Eventos',
         default: []
@@ -42,21 +43,20 @@ const usuariosSchema = Schema({
     roles: {
         type: String,
         required: true,
-        enum: ["ADMIN_ROLE","CLIENT_ROLE"],
+        enum: ["ADMIN_ROLE", "CLIENT_ROLE"],
         default: "CLIENT_ROLE"
     },
     status: {
         type: Boolean,
         default: true
     },
-},
-{
+}, {
     versionKey: false,
-    timeStamps: true
+    timestamps: true 
 });
 
-usuariosSchema.methods.toJSON = function(){
-    const {_v, contraseña, _id, ...usuario} = this.toObject()
+usuariosSchema.methods.toJSON = function() {
+    const { _v, contraseña, _id, ...usuario } = this.toObject();
     usuario.uid = _id;
     return usuario;
 };

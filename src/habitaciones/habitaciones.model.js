@@ -8,7 +8,8 @@ const habitacionesSchema = new Schema({
     },
     categoria:{
         type: String,
-        required: true
+        required: true,
+        enum: ['SENCILLA', 'DOBLE', 'SUITE', 'FAMILIAR']
     },
     precio:{
         type: String,
@@ -25,9 +26,14 @@ const habitacionesSchema = new Schema({
     }],
     usuario:{
         type: Schema.ObjectId,
-        ref: 'User',
+        ref: 'Usuario',
         default: null
     },
+    serviciosAdicionales:[{
+        type: Schema.ObjectId,
+        ref: 'ServiciosAdicionales',
+        default: []
+    }],
 })
 
 habitacionesSchema.methods.toJSON = function(){
