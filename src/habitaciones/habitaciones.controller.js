@@ -1,4 +1,6 @@
 import Habitaciones from './habitaciones.model.js';
+import Usuarios from "../usuarios/usuarios.model.js"
+import { trusted } from 'mongoose';
 
 export const listarHabitaciones = async (req, res) => {
     try{
@@ -17,9 +19,10 @@ export const listarHabitaciones = async (req, res) => {
 
 export const crearHabitacion = async (req, res) => {
     try{
-        const {numero, categoria, precio} = req.body
-        const habitacion = new Habitaciones({numero, categoria, precio})
+        const data = req.body
+        const habitacion = new Habitaciones(data)
         await habitacion.save()
+
         res.status(201).json({
             msg: 'Habitacion creada',
             habitacion
@@ -31,6 +34,27 @@ export const crearHabitacion = async (req, res) => {
         })
     }
 }
+
+export const reservarHabitacion = async (req, res) => {
+    try {
+        const { uid } = req.params;
+        const { usuario } = req.body;
+
+        await Promise.all([
+            Habitaciones.findByIdAndUpdate({_id: uid}, { usuario: usuario }, { new: true }),
+            Usuarios.findOneAndUpdate({_id:usuario}, { $push: { habitaciones: uid } }, { new: true })
+        ]);
+
+        res.status(200).json({ msg: 'Habitación reservada con éxito' });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            msg: 'Error al reservar la habitación'
+        });
+    }
+};
+
 
 export const editarHabitacion = async (req, res) => {
     try{
