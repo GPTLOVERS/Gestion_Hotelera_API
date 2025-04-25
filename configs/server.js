@@ -6,6 +6,7 @@ import morgan from "morgan";
 import express from "express";
 import { connectionDB } from "./mongo.js";
 import authRoutes from "../src/Auth/auth.routes.js"
+import userRouter from "../src/usuarios/usuarios.routes.js"
 import habitacionesRoutes from "../src/habitaciones/habitaciones.routes.js";
 
 const middlewares = (app)  =>{
@@ -18,6 +19,7 @@ const middlewares = (app)  =>{
 
 const routes = (app) => {
     app.use('/gestorDeHoteles/v1/auth', authRoutes)
+    app.use('/gestorDeHoteles/v1/usuarios', userRouter)
     app.use('/gestorDeHoteles/v1/habitaciones', habitacionesRoutes)
 }
 
