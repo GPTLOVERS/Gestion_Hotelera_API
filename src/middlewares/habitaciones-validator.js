@@ -14,3 +14,13 @@ export const crearHabitacionValidator = [
     body('categoria').notEmpty().withMessage('La categoria de la habitacion es obligatoria'),
     body('precio').notEmpty().withMessage('El precio de la habitacion es obligatorio')
 ]
+
+export const editarHabitacionValidator = [
+    //validateJWT,
+    //hasRoles('ADMIN_ROLE')
+]
+
+export const eliminarHabitacionValidator = [
+    //validateJWT,
+    //hasRoles('ADMIN_ROLE')
+]
