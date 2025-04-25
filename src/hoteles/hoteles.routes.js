@@ -1,14 +1,13 @@
 import { Router } from "express";
-import { obtenerHoteles, crearHotel, actualizarHotel, } from "./hoteles.controller.js";
-import { listarHotelesValidator, crearHotelValidator,  editarHotelValidator, } from "../middlewares/hoteles-validator.js";
+import { obtenerHoteles, crearHotel, editarHotel } from "./hoteles.controller.js"; 
+import { obtenerHotelValidator, crearHotelValidator, editarHotelValidator } from "../middlewares/hoteles-validator.js";
 
 const router = Router();
 
-router.get('/obtenerHotel/:id', listarHotelesValidator, obtenerHotelPorId);
+router.get('/obtenerHoteles', obtenerHotelValidator, obtenerHoteles);
 
 router.post('/crearHotel', crearHotelValidator, crearHotel);
 
-router.put('/editarHotel/:id', editarHotelValidator, actualizarHotel);
-
+router.put('/editarHotel/:id', editarHotelValidator, editarHotel); 
 
 export default router;

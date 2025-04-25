@@ -7,6 +7,7 @@ import express from "express";
 import { connectionDB } from "./mongo.js";
 import authRoutes from "../src/Auth/auth.routes.js"
 import habitacionesRoutes from "../src/habitaciones/habitaciones.routes.js";
+import hotelesRoutes from "../src/hoteles/hoteles.routes.js";   
 
 const middlewares = (app)  =>{
     app.use(express.urlencoded({extended:false}));
@@ -19,6 +20,8 @@ const middlewares = (app)  =>{
 const routes = (app) => {
     app.use('/gestorDeHoteles/v1/auth', authRoutes)
     app.use('/gestorDeHoteles/v1/habitaciones', habitacionesRoutes)
+    app.use('/gestorDeHoteles/v1/hoteles', hotelesRoutes)
+    
 }
 
 const connectionMongo = async() =>{

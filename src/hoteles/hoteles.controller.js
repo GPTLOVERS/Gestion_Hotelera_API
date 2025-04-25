@@ -47,8 +47,7 @@ export const crearHotel = async (req, res) => {
     }
 };
 
-
-export const actualizarHotel = async (req, res) => {
+export const editarHotel = async (req, res) => {
     try {
         const { id } = req.params;
         const data = req.body;
@@ -75,4 +74,3 @@ export const actualizarHotel = async (req, res) => {
         });
     }
 };
-
