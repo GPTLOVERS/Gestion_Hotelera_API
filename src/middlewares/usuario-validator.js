@@ -1,4 +1,4 @@
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 import { emailExist, userNameExist, uidExist } from "../helpers/db-validators.js";
 import {validationsFields} from "../middlewares/fields-validator.js"
 import { catchErrors } from "./catch-errors.js";
@@ -20,3 +20,40 @@ export const loginValidator = [
     validationsFields,
     catchErrors
 ];
+
+export const getUserByIdValidator = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
+    param("uid").isMongoId().withMessage("No es un ID válido de MongoDB"),
+    param("uid").custom(uidExist),
+    validationsFields,
+    catchErrors
+]
+
+export const deleteUserValidator = [
+    validateJWT,
+    param("uid").isMongoId().withMessage("No es un ID válido de MongoDB").custom(uidExist),
+    validationsFields,
+    catchErrors
+]
+
+export const updatePasswordValidator = [
+    validateJWT,
+    param("uid").isMongoId().withMessage("No es un ID válido de MongoDB").custom(uidExist),
+    body("newPassword").isLength({min: 8}).isStrongPassword({
+        minLength: 8,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1
+    }).withMessage("El password debe contener al menos 8 caracteres"),
+    validationsFields,
+    catchErrors
+]
+
+export const updateUserValidator = [
+    validateJWT,
+    param("uid", "No es un ID válido").isMongoId().custom(uidExist),
+    validationsFields,
+    catchErrors
+]
