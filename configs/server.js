@@ -5,6 +5,7 @@ import cors from "cors";
 import morgan from "morgan";
 import express from "express";
 import { connectionDB } from "./mongo.js";
+import authRoutes from "../src/Auth/auth.routes.js"
 import habitacionesRoutes from "../src/habitaciones/habitaciones.routes.js";
 
 const middlewares = (app)  =>{
@@ -16,7 +17,8 @@ const middlewares = (app)  =>{
 }
 
 const routes = (app) => {
-   app.use('/gestorDeHoteles/v1/habitaciones', habitacionesRoutes)
+    app.use('/gestorDeHoteles/v1/auth', authRoutes)
+    app.use('/gestorDeHoteles/v1/habitaciones', habitacionesRoutes)
 }
 
 const connectionMongo = async() =>{
