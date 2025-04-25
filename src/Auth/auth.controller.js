@@ -10,6 +10,16 @@ export const register = async(req,res) =>{
         const encryptedPass = await hash(data.contraseña);
         data.contraseña = encryptedPass;
         data.profilePicture = profilePicture;
+        
+        if (!Array.isArray(data.habitaciones)) {
+            data.habitaciones = [];
+        }
+        
+        if (!Array.isArray(data.eventos)) {
+            data.eventos = [];
+        }
+        
+            
         const usuario = await Usuario.create(data)
 
         return res.status(201).json({
