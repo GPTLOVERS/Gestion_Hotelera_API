@@ -1,8 +1,6 @@
 import { Router } from "express";
-import { listarHabitaciones, crearHabitacion, editarHabitacion, eliminarHabitacion, reservarHabitacion } from "./habitaciones.controller.js";
-import { listarHabitacionesValidator, crearHabitacionValidator, editarHabitacionValidator,
-    eliminarHabitacionValidator
-} from "../middlewares/habitaciones-validator.js";
+import { crearHabitacionValidator, editarHabitacionValidator, eliminarHabitacionValidator, listarHabitacionesValidator } from "../middlewares/habitaciones-validator.js";
+import { crearHabitacion, editarHabitacion, eliminarHabitacion, listarHabitaciones, reservarHabitacion } from "./habitaciones.controller.js";
 
 const router = Router()
 

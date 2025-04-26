@@ -1,9 +1,9 @@
 import { body, param } from "express-validator";
-import { emailExist, userNameExist, uidExist } from "../helpers/db-validators.js";
-import {validationsFields} from "../middlewares/fields-validator.js"
+import { emailExist, uidExist, userNameExist } from "../helpers/db-validators.js";
+import { validationsFields } from "../middlewares/fields-validator.js";
 import { catchErrors } from "./catch-errors.js";
-import { validateJWT } from "./validate-token.js";
 import { hasRoles } from "./validate-roles.js";
+import { validateJWT } from "./validate-token.js";
 
 export const registerValidator = [
     body("nombre").not().isEmpty().withMessage("Name is required"),
