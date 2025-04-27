@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 const eventosSchema = new Schema({
     nombre:{
@@ -41,7 +41,7 @@ const eventosSchema = new Schema({
 
 eventosSchema.methods.toJSON = function(){
     const {_id, ...eventos} = this.toObject()
-    eventos.id = _id
+    eventos.uid = _id
     return eventos;
 }
 

@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "0c39ec1b-10cf-41af-b504-257d92b922c3",
+		"_postman_id": "e462a68e-88d8-44aa-9825-a1d9cf27ddae",
 		"name": "Gestión Hotelera",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "38544176"
+		"_exporter_id": "41958063"
 	},
 	"item": [
 		{
@@ -110,6 +110,16 @@
 				{
 					"name": "crear habitaciones",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODBkOGQyNDdlNDYwZmY1YTM4Mjg2MTUiLCJpYXQiOjE3NDU3MTg1NjksImV4cCI6MTc0NTcyMjE2OX0.1HC4N7MWPSyAo-j0LvjE5ukKtuUmuUVEKlFuriphP8Y",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -288,6 +298,183 @@
 									"key": "id",
 									"value": "680bf3e5a7da4cd66d747b9a"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Eventos",
+			"item": [
+				{
+					"name": "Crear Evento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODBkOGQyNDdlNDYwZmY1YTM4Mjg2MTUiLCJpYXQiOjE3NDU3MjExMzcsImV4cCI6MTc0NTcyNDczN30.Zd7vzD_oV5FdvshY7HF6-DWKlexSkZaMBtrhrUtE80I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Fiesta\",\r\n    \"descripcion\": \"Reunión o celebración\",\r\n    \"fecha\": \"2025-05-01\",\r\n    \"horaInicio\": \"09:00\",\r\n    \"horaFin\": \"17:00\",\r\n    \"serviciosAdicionales\": [],\r\n    \"habitaciones\": [\"680d8d467e460ff5a3828618\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/eventos/crearEvento",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"eventos",
+								"crearEvento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Evento",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODBkOGQyNDdlNDYwZmY1YTM4Mjg2MTUiLCJpYXQiOjE3NDU3MjExMzcsImV4cCI6MTc0NTcyNDczN30.Zd7vzD_oV5FdvshY7HF6-DWKlexSkZaMBtrhrUtE80I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/eventos/listarEventos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"eventos",
+								"listarEventos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Evento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODBkOGQyNDdlNDYwZmY1YTM4Mjg2MTUiLCJpYXQiOjE3NDU3MjI1ODMsImV4cCI6MTc0NTcyNjE4M30.Dt7LERiCHzTL6LI1K3WC0jdY9vbs9rVd_xNrLQkSk0E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"FiestaUpdate\",\r\n    \"descripcion\": \"Reunión o celebración\",\r\n    \"fecha\": \"2025-05-01\",\r\n    \"horaInicio\": \"09:50\",\r\n    \"horaFin\": \"16:00\",\r\n    \"serviciosAdicionales\": [],\r\n    \"habitaciones\": [\"680d8d467e460ff5a3828618\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/eventos/editarEvento/680da03fa243bb62007f9b9c",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"eventos",
+								"editarEvento",
+								"680da03fa243bb62007f9b9c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Evento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODBkOGQyNDdlNDYwZmY1YTM4Mjg2MTUiLCJpYXQiOjE3NDU3MjI1ODMsImV4cCI6MTc0NTcyNjE4M30.Dt7LERiCHzTL6LI1K3WC0jdY9vbs9rVd_xNrLQkSk0E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/eventos/eliminarEvento/680da03fa243bb62007f9b9c",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"eventos",
+								"eliminarEvento",
+								"680da03fa243bb62007f9b9c"
 							]
 						}
 					},

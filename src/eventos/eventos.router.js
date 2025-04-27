@@ -11,3 +11,5 @@ router.get('/listarEventos', listarEventosValidator, listarEventos)
 router.put('/editarEvento/:uid', editarEventoValidator, editarEvento)
 
 router.delete('/eliminarEvento/:uid', eliminarEventoValidator, eliminarEvento)
+
+export default router
