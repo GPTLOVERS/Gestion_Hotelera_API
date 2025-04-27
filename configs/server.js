@@ -1,13 +1,14 @@
 'use strict'
 
-import helmet from "helmet";
 import cors from "cors";
-import morgan from "morgan";
 import express from "express";
-import { connectionDB } from "./mongo.js";
-import authRoutes from "../src/Auth/auth.routes.js"
-import userRouter from "../src/usuarios/usuarios.routes.js"
+import helmet from "helmet";
+import morgan from "morgan";
+import authRoutes from "../src/Auth/auth.routes.js";
+import eventosRoutes from "../src/eventos/eventos.router.js";
 import habitacionesRoutes from "../src/habitaciones/habitaciones.routes.js";
+import userRouter from "../src/usuarios/usuarios.routes.js";
+import { connectionDB } from "./mongo.js";
 
 const middlewares = (app)  =>{
     app.use(express.urlencoded({extended:false}));
@@ -21,6 +22,7 @@ const routes = (app) => {
     app.use('/gestorDeHoteles/v1/auth', authRoutes)
     app.use('/gestorDeHoteles/v1/usuarios', userRouter)
     app.use('/gestorDeHoteles/v1/habitaciones', habitacionesRoutes)
+    app.use('/gestorDeHoteles/v1/eventos', eventosRoutes)
 }
 
 const connectionMongo = async() =>{

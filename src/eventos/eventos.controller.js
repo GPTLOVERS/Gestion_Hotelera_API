@@ -3,8 +3,13 @@ import Eventos from './eventos.model.js';
 export const crearEvento = async (req, res) => {
     try {
         const data = req.body;
-        const evento = new Eventos(data)
+        if (Array.isArray(data.serviciosAdicionales) && data.serviciosAdicionales.length === 0) {
+            data.serviciosAdicionales = undefined;
+        }
+
+        const evento = new Eventos(data);
         await evento.save();
+        
         res.status(201).json({
             success: true,
             message: "Evento creado",
@@ -21,7 +26,9 @@ export const crearEvento = async (req, res) => {
 
 export const listarEventos = async (req, res) => {
     try {
-        const eventos = await Eventos.find().populate("serviciosAdicionales", "nombre").populate("habitaciones", "nombre");
+        const eventos = await Eventos.find()
+            //.populate("serviciosAdicionales", "nombre")
+            .populate("habitaciones", "nombre");
         res.status(200).json({
             success: true,
             message: "Lista de eventos",
@@ -39,20 +46,25 @@ export const listarEventos = async (req, res) => {
 export const editarEvento = async (req, res) => {
     try {
         const { uid } = req.params;
-        const data = req.body;
+        let data = req.body;
+        if (Array.isArray(data.serviciosAdicionales) && data.serviciosAdicionales.length === 0) {
+            data.serviciosAdicionales = undefined;
+        }
+
         const evento = await Eventos.findByIdAndUpdate(uid, data, { new: true });
-        if(!evento) {
+        if (!evento) {
             return res.status(404).json({
                 success: false,
                 message: "Evento no encontrado",
             });
         }
+
         res.status(200).json({
             success: true,
             message: "Evento editado",
             evento
-        })
-    }catch(error){
+        });
+    } catch (error) {
         console.log(error);
         return res.status(500).json({
             success: false,

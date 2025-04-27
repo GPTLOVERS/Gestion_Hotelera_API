@@ -1,5 +1,3 @@
-import { validateJWT } from "./validate-token.js";
-import { hasRoles } from "./validate-roles.js";
 import { body } from "express-validator";
 
 export const listarHabitacionesValidator = [

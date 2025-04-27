@@ -1,43 +1,44 @@
 import { body, param } from "express-validator";
+import { uidExistE } from "../helpers/db-validators.js";
+import { validationsFields } from "../middlewares/fields-validator.js";
 import { catchErrors } from "./catch-errors.js";
-import { validarCampos } from "./validar-campos.js";
-import { hasRoles } from "./validate-roles";
-import { validateJWT } from "./validate-token";
+import { hasRoles } from "./validate-roles.js";
+import { validateJWT } from "./validate-token.js";
 
 export const crearEventoValidator = [
     validateJWT,
-    hasRoles('ADMIN_ROLE, USER_ROLE'),
+    hasRoles('ADMIN_ROLE', 'USER_ROLE'),
     body('nombre').notEmpty().withMessage('El nombre del evento es obligatorio'),
+    body('descripcion').notEmpty().withMessage('La descripcion del evento es obligatoria'),
     body('fecha').notEmpty().withMessage('La fecha del evento es obligatoria'),
-    body('hora').notEmpty().withMessage('La hora del evento es obligatoria'),
-    body('duracion').notEmpty().withMessage('La duracion del evento es obligatoria'),
-    body('tipoEvento').notEmpty().withMessage('El tipo de evento es obligatorio'),
-    body('capacidad').notEmpty().withMessage('La capacidad del evento es obligatoria'),
-    body('precio').notEmpty().withMessage('El precio del evento es obligatorio'),
-    validarCampos,
+    body('horaInicio').notEmpty().withMessage('La hora inicial del evento es obligatoria'),
+    body('horaFin').notEmpty().withMessage('La hora final del evento es obligatoria'),
+    //body('serviciosAdicionales').notEmpty().withMessage('El servicio adicional del evento es obligatorio'),
+    //body('habitaciones').notEmpty().withMessage('La habitacion del evento es obligatoria'),
+    validationsFields,
     catchErrors
 ]
 export const listarEventosValidator = [
     validateJWT,
-    hasRoles("ADMIN_ROLE"),
-    validarCampos,
+    hasRoles("ADMIN_ROLE", "USER_ROLE"),
+    //validationsFields,
     catchErrors
 ]
 
 export const editarEventoValidator = [
     validateJWT,
+    hasRoles("ADMIN_ROLE", "USER_ROLE"),
     param('uid').isMongoId().withMessage('No es un ID válido de MongoDB'),
-    param('uid').custom(uidExist),
-    hasRoles("ADMIN_ROLE"),
-    validarCampos,
+    param('uid').custom(uidExistE),
+    validationsFields,
     catchErrors
 ]
 
 export const eliminarEventoValidator = [
     validateJWT,
-    hasRoles("ADMIN_ROLE"),
+    hasRoles("ADMIN_ROLE", "USER_ROLE"),
     param('uid').isMongoId().withMessage('No es un ID válido de MongoDB'),
-    param('uid').custom(uidExist),
-    validarCampos,
+    param('uid').custom(uidExistE),
+    validationsFields,
     catchErrors
 ]
