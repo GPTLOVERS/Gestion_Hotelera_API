@@ -22,12 +22,12 @@ const serviciosAdicionalesSchema = new Schema({
         default: 'otro'
     },
     habitaciones: [{
-        type: Schema.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Habitaciones',
         default: [],
     }],
     eventos:[{
-        type: Schema.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Eventos',
         default: []
     }],
