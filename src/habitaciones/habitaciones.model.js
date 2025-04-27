@@ -20,17 +20,17 @@ const habitacionesSchema = new Schema({
         default: false
     },
     eventos:[{
-        type: Schema.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Eventos',
         default: []
     }],
     usuario: {
-        type: Schema.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Usuario',
         default: null
     },    
     serviciosAdicionales:[{
-        type: Schema.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'ServiciosAdicionales',
         default: []
     }],
