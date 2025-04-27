@@ -31,12 +31,12 @@ const usuariosSchema = Schema({
         required: true
     },
     habitaciones: [{
-        type: Schema.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Habitaciones',
         default: []
     }],
     eventos: [{
-        type: Schema.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Eventos',
         default: []
     }],
