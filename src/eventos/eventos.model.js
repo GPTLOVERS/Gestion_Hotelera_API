@@ -25,12 +25,12 @@ const eventosSchema = new Schema({
         maxLength: [5, "End time cannot exceed 5 characteres"],
     },
     serviciosAdicionales:{
-        type: Schema.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "ServiciosAdicionales",
         default: []
     },
     habitaciones:[{
-        type: Schema.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Habitaciones',
         default: []
     }],
