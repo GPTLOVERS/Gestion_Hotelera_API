@@ -1,0 +1,486 @@
+{
+	"info": {
+		"_postman_id": "e462a68e-88d8-44aa-9825-a1d9cf27ddae",
+		"name": "Gestión Hotelera",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41958063"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Crear Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Javier\",\r\n  \"apellido\": \"Herrera\",\r\n  \"userName\": \"Zodiacal\",\r\n  \"correo\": \"javierherrera@example.com\",\r\n  \"contraseña\": \"MiContraSegura123\",\r\n  \"telefono\": \"12345678\",\r\n  \"roles\": \"ADMIN_ROLE\",\r\n  \"status\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n  \"correo\": \"javierherrera@example.com\",\r\n  \"contraseña\": \"MiContraSegura123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Habitaciones",
+			"item": [
+				{
+					"name": "listar habitaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/habitaciones/listarHabitaciones",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"habitaciones",
+								"listarHabitaciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear habitaciones",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODBkOGQyNDdlNDYwZmY1YTM4Mjg2MTUiLCJpYXQiOjE3NDU3MTg1NjksImV4cCI6MTc0NTcyMjE2OX0.1HC4N7MWPSyAo-j0LvjE5ukKtuUmuUVEKlFuriphP8Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero\": \"002\",\r\n    \"categoria\": \"SENCILLA\",\r\n    \"precio\": \"100Q\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/habitaciones/crearHabitacion",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"habitaciones",
+								"crearHabitacion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reservar Habitacion",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"680af89dd7c223b6ad9a0cce\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/habitaciones/reservaciones/:uid",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"habitaciones",
+								"reservaciones",
+								":uid"
+							],
+							"variable": [
+								{
+									"key": "uid",
+									"value": "680bddb5acdc9d101c1e141d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editar habitacion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero\": \"2\",\r\n    \"precio\":\"120Q\",\r\n    \"categoria\": \"DOBLE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/habitaciones/editarHabitacion/680ac339f3dcbb83b4db1a83",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"habitaciones",
+								"editarHabitacion",
+								"680ac339f3dcbb83b4db1a83"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar habitacion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Buscar Usuario por Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODBiZjNlNWE3ZGE0Y2Q2NmQ3NDdiOWEiLCJpYXQiOjE3NDU2MTM4MDIsImV4cCI6MTc0NTYxNzQwMn0.RjNZQOIhYv14Z53xtBI4b34zbscP1mKwjIWPMiyHkv4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODBhZjg5ZGQ3YzIyM2I2YWQ5YTBjY2UiLCJpYXQiOjE3NDU2MTM2NjUsImV4cCI6MTc0NTYxNzI2NX0.uC0fDiu0qUT7yiJ_Zo76NwaUNgk27RCIN8okahL-_i0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Javier\",\r\n  \"apellido\": \"Herrera\",\r\n  \"userName\": \"Zodiacal\",\r\n  \"correo\": \"javierherrera@example.com\",\r\n  \"contraseña\": \"MiContraSegura123\",\r\n  \"telefono\": \"12345678\",\r\n  \"roles\": \"CLIENT_ROLE\",\r\n  \"status\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/usuarios/findUser/:id",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"usuarios",
+								"findUser",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "680bf3e5a7da4cd66d747b9a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Eventos",
+			"item": [
+				{
+					"name": "Crear Evento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODBkOGQyNDdlNDYwZmY1YTM4Mjg2MTUiLCJpYXQiOjE3NDU3MjExMzcsImV4cCI6MTc0NTcyNDczN30.Zd7vzD_oV5FdvshY7HF6-DWKlexSkZaMBtrhrUtE80I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Fiesta\",\r\n    \"descripcion\": \"Reunión o celebración\",\r\n    \"fecha\": \"2025-05-01\",\r\n    \"horaInicio\": \"09:00\",\r\n    \"horaFin\": \"17:00\",\r\n    \"serviciosAdicionales\": [],\r\n    \"habitaciones\": [\"680d8d467e460ff5a3828618\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/eventos/crearEvento",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"eventos",
+								"crearEvento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Evento",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODBkOGQyNDdlNDYwZmY1YTM4Mjg2MTUiLCJpYXQiOjE3NDU3MjExMzcsImV4cCI6MTc0NTcyNDczN30.Zd7vzD_oV5FdvshY7HF6-DWKlexSkZaMBtrhrUtE80I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/eventos/listarEventos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"eventos",
+								"listarEventos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Evento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODBkOGQyNDdlNDYwZmY1YTM4Mjg2MTUiLCJpYXQiOjE3NDU3MjI1ODMsImV4cCI6MTc0NTcyNjE4M30.Dt7LERiCHzTL6LI1K3WC0jdY9vbs9rVd_xNrLQkSk0E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"FiestaUpdate\",\r\n    \"descripcion\": \"Reunión o celebración\",\r\n    \"fecha\": \"2025-05-01\",\r\n    \"horaInicio\": \"09:50\",\r\n    \"horaFin\": \"16:00\",\r\n    \"serviciosAdicionales\": [],\r\n    \"habitaciones\": [\"680d8d467e460ff5a3828618\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/eventos/editarEvento/680da03fa243bb62007f9b9c",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"eventos",
+								"editarEvento",
+								"680da03fa243bb62007f9b9c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Evento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODBkOGQyNDdlNDYwZmY1YTM4Mjg2MTUiLCJpYXQiOjE3NDU3MjI1ODMsImV4cCI6MTc0NTcyNjE4M30.Dt7LERiCHzTL6LI1K3WC0jdY9vbs9rVd_xNrLQkSk0E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3005/gestorDeHoteles/v1/eventos/eliminarEvento/680da03fa243bb62007f9b9c",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"gestorDeHoteles",
+								"v1",
+								"eventos",
+								"eliminarEvento",
+								"680da03fa243bb62007f9b9c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
